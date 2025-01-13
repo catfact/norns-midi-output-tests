@@ -17,13 +17,6 @@ local next_cc_value = function()
     return math.random(0, 127)
 end
 
-init = function()
-    print('all midi devices:')
-    for i, device in ipairs(devices) do
-        print(device.name)
-    end
-end
-
 tick = function() 
     local cc_val = next_cc_value()
     local next_note = next_note_value()
@@ -39,7 +32,14 @@ tick = function()
 end
 
 local time_delta = 0.25
-init = function()
+i
+nit = function()
+    
+    print('all midi devices:')
+    for i, device in ipairs(devices) do
+        print(device.name)
+    end
+
     local m = metro.init(tick, time_delta)
     m:start()
 end

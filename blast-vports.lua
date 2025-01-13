@@ -19,15 +19,6 @@ local next_cc_value = function()
     return math.random(0, 127)
 end
 
-init = function()
-    print('midi vports:')
-    for i, port in ipairs(midi.vports) do
-        if port.device ~= nil then
-            print(port.device.name)
-        end
-    end
-end
-
 tick = function() 
     local cc_val = next_cc_value()
     local next_note = next_note_value()
@@ -43,7 +34,16 @@ tick = function()
 end
 
 local time_delta = 0.25
+
 init = function()
+
+    print('midi vports:')
+    for i, port in ipairs(midi.vports) do
+        if port.device ~= nil then
+            print(port.device.name)
+        end
+    end
+
     local m = metro.init(tick, time_delta)
     m:start()
 end
