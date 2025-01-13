@@ -2,7 +2,7 @@ two scripts:
 
 `blast-devices.lua`
 
-this well send a sequence of random mod wheel values and note on/offs, to all connected MIDI devices (whether or not assigned to a `vport` / device slot.) all messages on channel 1. if a device doesn't seem to be receiving these messages, there may be a bug in norns which prevents device compatibility.
+sends a sequence of random mod wheel values and note on/offs, to all connected MIDI devices (whether or not assigned to a `vport` / device slot.) all messages on channel 1. if a device doesn't seem to be receiving these messages, there may be a bug in norns which prevents device compatibility.
 
 `blast-vports.lua`
 
