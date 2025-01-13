@@ -1,8 +1,10 @@
--- send random notes / modwheel to all devices (assigned or not)
-local send_to_all_devices = function(midi_data) 
-    local devices = midi.devices
-    for i, device in ipairs(devices) do
-        device:send(midi_data)
+-- send random notes / modwheel to all assigned devices
+
+local send_to_all_vports = function(midi_data) 
+    for i, port in ipairs(midi.vports) do
+        if port.device ~= nil then
+            port.device:send(midi_data)
+        end
     end
 end
 
@@ -18,9 +20,11 @@ local next_cc_value = function()
 end
 
 init = function()
-    print('all midi devices:')
-    for i, device in ipairs(devices) do
-        print(device.name)
+    print('midi vports:')
+    for i, port in ipairs(midi.vports) do
+        if port.device ~= nil then
+            print(port.device.name)
+        end
     end
 end
 
@@ -29,12 +33,12 @@ tick = function()
     local next_note = next_note_value()
     if last_note ~= nil then
         local noteoff_data = {type='note_off', note=last_note}
-        send_to_all_devices(noteoff_data)
+        send_to_all_vports(noteoff_data)
     end
     local noteon_data = {type='note_on', note=next_note}
     local cc_data = {type='cc', cc=cc_num, val=cc_val}
-    send_to_all_devices(noteon_data)
-    send_to_all_devices(cc_data)
+    send_to_all_vports(noteon_data)
+    send_to_all_vports(cc_data)
     last_note = next_note
 end
 
