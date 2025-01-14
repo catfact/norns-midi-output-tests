@@ -1,7 +1,6 @@
 -- send random notes / modwheel to all devices (assigned or not)
 local send_to_all_devices = function(midi_data) 
-    local devices = midi.devices
-    for i, device in ipairs(devices) do
+    for i, device in ipairs(midi.devices) do
         device:send(midi_data)
     end
 end
@@ -36,7 +35,7 @@ local time_delta = 0.25
 init = function()
     
     print('all midi devices:')
-    for i, device in ipairs(devices) do
+    for i, device in ipairs(midi.devices) do
         print(device.name)
     end
 
