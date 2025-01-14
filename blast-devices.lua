@@ -32,8 +32,8 @@ tick = function()
 end
 
 local time_delta = 0.25
-i
-nit = function()
+
+init = function()
     
     print('all midi devices:')
     for i, device in ipairs(devices) do
